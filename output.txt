@@ -1,0 +1,134 @@
+
+================= OPERATOR START UP =================
+[Display-KIOSK-A] 단말 시작 완료. 상태 => IDLE
+[Display-KIOSK-B] 단말 시작 완료. 상태 => IDLE
+
+================= MAKE APPOINTMENT SUCCESS =================
+[CardReader] card read => CardData{patientId='P1001'}
+[Display-KIOSK-A] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-A] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-A] 선택 서비스 => MAKE_APPOINTMENT
+[Display-KIOSK-A] 예약이 완료되었습니다.
+[Printer-KIOSK-A]
+[예약 확인증]
+단말: KIOSK-A
+예약번호(바코드): APT-1001
+환자ID: P1001
+의사ID: D001
+예약시간: 2026-03-27 10:00
+상태: SCHEDULED
+출력시각: 2026-03-26 00:29
+
+[Display-KIOSK-A] 세션 종료 / 상태 => IDLE
+
+================= OUTSTANDING BILL REJECTION =================
+[CardReader] card read => CardData{patientId='P1002'}
+[Display-KIOSK-A] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-A] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-A] 선택 서비스 => MAKE_APPOINTMENT
+[Display-KIOSK-A] 실패: 미납금이 존재하여 예약할 수 없습니다.
+[Display-KIOSK-A] 안내: [수납 창구 또는 온라인 수납을 이용하세요.]
+[Printer-KIOSK-A]
+[수납 안내]
+미납금이 존재하여 예약이 제한됩니다.
+수납 창구를 이용해 주세요.
+
+[Display-KIOSK-A] 세션 종료 / 상태 => IDLE
+
+================= QUERY STATUS =================
+[CardReader] card read => CardData{patientId='P1001'}
+[Display-KIOSK-A] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-A] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-A] 선택 서비스 => QUERY_APPOINTMENT_STATUS
+[Display-KIOSK-A] 예약 내역 조회 성공
+[Printer-KIOSK-A]
+[예약 현황]
+- Appointment{appointmentId='APT-1001', patientId='P1001', doctorId='D001', appointmentTime=2026-03-27T10:00, status=SCHEDULED}
+
+
+[Display-KIOSK-A] 세션 종료 / 상태 => IDLE
+
+================= CONCURRENT BOOKING TEST =================
+[CardReader] card read => CardData{patientId='P1001'}
+[Display-KIOSK-A] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[CardReader] card read => CardData{patientId='P1003'}
+[Display-KIOSK-B] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-A] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-B] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-B] 선택 서비스 => MAKE_APPOINTMENT
+[Display-KIOSK-A] 선택 서비스 => MAKE_APPOINTMENT
+[Display-KIOSK-B] 예약이 완료되었습니다.
+[Printer-KIOSK-B]
+[예약 확인증]
+단말: KIOSK-B
+예약번호(바코드): APT-1002
+환자ID: P1003
+의사ID: D003
+예약시간: 2026-03-28 09:00
+상태: SCHEDULED
+출력시각: 2026-03-26 00:29
+
+[Display-KIOSK-B] 세션 종료 / 상태 => IDLE
+[Display-KIOSK-A] 실패: 요청 시간대가 이미 만석입니다.
+[Display-KIOSK-A] 안내: [2026-03-28 10:00, 2026-03-28 08:00, 2026-03-28 11:00, 2026-03-28 07:00]
+[Display-KIOSK-A] 세션 종료 / 상태 => IDLE
+[SERVER] D003 @ 2026-03-28T09:00 예약 현황 => 1건
+  - Appointment{appointmentId='APT-1002', patientId='P1003', doctorId='D003', appointmentTime=2026-03-28T09:00, status=SCHEDULED}
+
+================= RESCHEDULE SUCCESS =================
+[CardReader] card read => CardData{patientId='P1001'}
+[Display-KIOSK-A] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-A] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-A] 선택 서비스 => RESCHEDULE_APPOINTMENT
+[Display-KIOSK-A] 예약 변경이 완료되었습니다.
+[Printer-KIOSK-A]
+[예약 변경 확인증]
+단말: KIOSK-A
+예약번호(바코드): APT-1001
+환자ID: P1001
+의사ID: D001
+예약시간: 2026-03-27 15:00
+상태: SCHEDULED
+출력시각: 2026-03-26 00:29
+
+[Display-KIOSK-A] 세션 종료 / 상태 => IDLE
+
+================= CANCEL TOO LATE REJECTION =================
+[CardReader] card read => CardData{patientId='P1001'}
+[Display-KIOSK-A] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-A] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-A] 선택 서비스 => CANCEL_APPOINTMENT
+[Display-KIOSK-A] 실패: 취소 가능 시간을 초과했습니다.
+[Display-KIOSK-A] 안내: [병원으로 전화하여 취소를 진행하세요.]
+[Display-KIOSK-A] 세션 종료 / 상태 => IDLE
+
+================= CHECK IN SUCCESS =================
+[CardReader] card read => CardData{patientId='P1003'}
+[Display-KIOSK-B] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-B] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-B] 선택 서비스 => CHECK_IN
+[Display-KIOSK-B] 체크인이 완료되었습니다.
+[Display-KIOSK-B] 세션 종료 / 상태 => IDLE
+
+================= CHECK IN OUTSIDE WINDOW =================
+[CardReader] card read => CardData{patientId='P1001'}
+[Display-KIOSK-B] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-B] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-B] 선택 서비스 => CHECK_IN
+[Display-KIOSK-B] 실패: 당일 예약이 아닙니다.
+[Display-KIOSK-B] 세션 종료 / 상태 => IDLE
+
+================= BARCODE CHECK / QUERY =================
+[BarcodeScanner] scanned => APT-DEMO-c4615513
+[Display-KIOSK-A] 바코드 예약 조회 성공: Appointment{appointmentId='APT-DEMO-c4615513', patientId='P1003', doctorId='D002', appointmentTime=2026-03-26T00:59, status=CHECKED_IN}
+
+================= TRANSACTION CANCEL EXAMPLE =================
+[CardReader] card read => CardData{patientId='P1001'}
+[Display-KIOSK-A] 환자 인증 성공 / 상태 => SELECTING_SERVICE
+[Display-KIOSK-A] 메뉴 선택 가능: [Make Appointment, Cancel Appointment, Reschedule Appointment, Check In, Query Appointment Status, Cancel Transaction]
+[Display-KIOSK-A] 사용자 요청으로 거래를 취소합니다.
+[Display-KIOSK-A] 상태 => IDLE
+
+================= OPERATOR SHUT DOWN =================
+[Display-KIOSK-A] 단말 종료 완료. 상태 => OFFLINE
+[Display-KIOSK-B] 단말 종료 완료. 상태 => OFFLINE
